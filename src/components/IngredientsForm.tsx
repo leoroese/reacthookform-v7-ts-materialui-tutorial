@@ -19,8 +19,6 @@ const IngredientsForm: FC = () => {
     }
   );
 
-  console.log('ingredients are', watch('ingredients'));
-
   return (
     <>
       <Grid container direction="row">
@@ -31,11 +29,12 @@ const IngredientsForm: FC = () => {
                 name={`ingredients.${index}.name`}
                 control={control}
                 defaultValue={item.name}
-                render={({ field }) => <TextField {...field} />}
+                render={({ field }) => <TextField {...field} data-testid={`ingredients.${index}.name`} />}
               />
             </Grid>
             <Grid item>
               <IconButton
+                data-testid={`ingredients.${index}.removeButton`}
                 onClick={() => {
                   remove(index);
                 }}
@@ -47,6 +46,7 @@ const IngredientsForm: FC = () => {
         ))}
         <Grid item xs={12}>
           <Button
+            id="addButton"
             type="button"
             variant="contained"
             color="secondary"
